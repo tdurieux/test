@@ -3,7 +3,7 @@ const assert = require('assert');
 const CellularAutomaton = require('../src/cellularAutomaton.js').CellularAutomaton;
 const Row = require('../src/cellularAutomaton.js').Row;
 
-describe('cellular automation', function() {
+describe('cellular automaton', function() {
     describe('#patterns()', function() {
         it('should return the following definition 0, 1, 1, 0, 1, 1, 1, 0 for rule 110', function() {
             const automaton = new CellularAutomaton(null, 20, 110);
@@ -57,7 +57,7 @@ describe('cellular automation', function() {
     });
 });
 
-describe('row of cellular automation', function() {
+describe('row of cellular automaton', function() {
     describe('#getNeighbours()', function() {
         it('should wrap on the left', function() {
             const row = new Row([1, 0, 1, 9]);
