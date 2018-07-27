@@ -40,6 +40,19 @@ describe('cellular automation', function() {
             assert.deepEqual(automaton.currentState.state, [0, 0, 1]);
             const nextState = automaton.computeNextState();
             assert.deepEqual(nextState.state, [0, 1, 1]);
+            assert.deepEqual(automaton.currentState.state, [0, 1, 1]);
+        });
+    });
+
+    describe('#computeIteration()', function() {
+        it('should return the correct automaton for rule 110', function() {
+            const automaton = new CellularAutomaton(3, 3, 110);
+            assert.equal(automaton.toString(), "..X\n.XX\nXXX\n");
+        });
+
+        it('should return the correct automaton for rule 110', function() {
+            const automaton = new CellularAutomaton(3, 3, 50);
+            assert.equal(automaton.toString(), "..X\nXX.\n..X\n");
         });
     });
 });

@@ -50,6 +50,11 @@ class CellularAutomaton {
         this.currentState.state[this.size - 1] = 1;
     }
 
+    /**
+     * returns the rules that matches the cell patterns
+     *
+     * @returns {{}}
+     */
     get patterns() {
         const patterns = ['111', '110', '101', '100', '011', '010', '001', '000'];
         const definition = (this.rule >>> 0).toString(2).split('').map(x => parseInt(x));
@@ -81,7 +86,20 @@ class CellularAutomaton {
 
             nextState.state[i] = newValue;
         }
-        return nextState;
+        return this.currentState = nextState;
+    }
+
+    computeIteration() {
+        let output = '';
+        output += this.currentState.toString() + '\n';
+        for (let i = 0; i < this.nbIterations - 1; i++) {
+            output += this.computeNextState().toString() + '\n';
+        }
+        return output;
+    }
+
+    toString() {
+        return this.computeIteration();
     }
 }
 
