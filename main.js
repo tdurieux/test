@@ -1,40 +1,20 @@
 const program = require('commander');
+const CellularAutomaton = require('./src/cellularAutomaton').CellularAutomaton;
 
 program
-  .version('0.1.0')
-  .option('-C, --chdir <path>', 'change the working directory')
-  .option('-c, --config <path>', 'set config path. defaults to ./deploy.conf')
-  .option('-T, --no-tests', 'ignore test hook');
+    .version('0.1.0')
+    .option('-s, --size <size>', 'change the size of the automaton', 64)
+    .option('-i, --iteration <iteration>', 'the number of iteration of the automaton', 20)
+    .option('--state <state>', 'initial state (e.g. 001)');
 
 program
-  .command('setup [env]')
-  .description('run setup commands for all envs')
-  .option("-s, --setup_mode [mode]", "Which setup mode to use")
-  .action(function(env, options){
-    var mode = options.setup_mode || "normal";
-    env = env || 'all';
-    console.log('setup for %s env(s) with %s mode', env, mode);
-  });
-
-program
-  .command('exec <cmd>')
-  .alias('ex')
-  .description('execute the given remote cmd')
-  .option("-e, --exec_mode <mode>", "Which exec mode to use")
-  .action(function(cmd, options){
-    console.log('exec "%s" using %s mode', cmd, options.exec_mode);
-  }).on('--help', function() {
-    console.log('  Examples:');
-    console.log();
-    console.log('    $ deploy exec sequential');
-    console.log('    $ deploy exec async');
-    console.log();
-  });
-
-program
-  .command('*')
-  .action(function(env){
-    console.log('deploying "%s"', env);
+  .command('rule [rule]')
+  .description('run the specific rule')
+  .action(function(rule, options){
+      const nbIteration = parseInt(options.parent.iteration);
+      const size = parseInt(options.parent.size);
+      const automaton = new CellularAutomaton(size, nbIteration, rule);
+      console.log(automaton.computeIteration());
   });
 
 program.parse(process.argv);
