@@ -33,6 +33,15 @@ describe('cellular automation', function() {
             });
         });
     });
+
+    describe('#computeNextState()', function() {
+        it('should return ', function() {
+            const automaton = new CellularAutomaton(3, 20, 110);
+            assert.deepEqual(automaton.currentState.state, [0, 0, 1]);
+            const nextState = automaton.computeNextState();
+            assert.deepEqual(nextState.state, [0, 1, 1]);
+        });
+    });
 });
 
 describe('row of cellular automation', function() {

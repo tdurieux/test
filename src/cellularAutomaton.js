@@ -67,6 +67,22 @@ class CellularAutomaton {
 
         return output;
     }
+
+    /**
+     * compute the next row state based on the rule number
+     *
+     * @returns {Row}
+     */
+    computeNextState() {
+        const nextState = new Row(Array(this.size).fill(0));
+        for (let i = 0; i < this.size; i++) {
+            const neighbours = this.currentState.getNeighbours(i);
+            const newValue = this.patterns[neighbours];
+
+            nextState.state[i] = newValue;
+        }
+        return nextState;
+    }
 }
 
 exports.CellularAutomaton = CellularAutomaton;
