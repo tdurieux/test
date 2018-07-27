@@ -34,3 +34,22 @@ describe('cellular automation', function() {
         });
     });
 });
+
+describe('row of cellular automation', function() {
+    describe('#getNeighbours()', function() {
+        it('should wrap on the left', function() {
+            const row = new Row([1, 0, 1, 9]);
+            assert.equal(row.getNeighbours(0), '910');
+        });
+
+        it('should wrap on the right', function() {
+            const row = new Row([9, 0, 1, 0]);
+            assert.equal(row.getNeighbours(3), '109');
+        });
+
+        it('should return the neighbours', function() {
+            const row = new Row([9, 0, 1, 0]);
+            assert.equal(row.getNeighbours(1), '901');
+        });
+    });
+});
