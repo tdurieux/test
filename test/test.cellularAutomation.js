@@ -35,7 +35,7 @@ describe('cellular automation', function() {
     });
 
     describe('#computeNextState()', function() {
-        it('should return ', function() {
+        it('should compute the following state of the automaton ', function() {
             const automaton = new CellularAutomaton(3, 20, 110);
             assert.deepEqual(automaton.currentState.state, [0, 0, 1]);
             const nextState = automaton.computeNextState();
@@ -50,7 +50,7 @@ describe('cellular automation', function() {
             assert.equal(automaton.toString(), "..X\n.XX\nXXX\n");
         });
 
-        it('should return the correct automaton for rule 110', function() {
+        it('should return the correct automaton for rule 50', function() {
             const automaton = new CellularAutomaton(3, 3, 50);
             assert.equal(automaton.toString(), "..X\nXX.\n..X\n");
         });
